@@ -16,8 +16,6 @@ $(call inherit-product, hardware/qcom-caf/common/common.mk)
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
-# Dolby Atmos
-$(call inherit-product, hardware/dolby/dolby.mk)
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -88,31 +86,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
 
-# Dex2oat
-PRODUCT_VENDOR_PROPERTIES += \
-    dalvik.vm.dex2oat-cpu-set=4,5,6,7 \
-    dalvik.vm.dex2oat-threads=4 \
-    dalvik.vm.image-dex2oat-cpu-set=4,5,6,7 \
-    dalvik.vm.image-dex2oat-threads=4
-
-# Dex-preopt/ART
-ifeq ($(TARGET_BUILD_VARIANT),user)
-ART_BUILD_HOST_DEBUG := false
-ART_BUILD_HOST_NDEBUG := false
-ART_BUILD_TARGET_DEBUG := false
-ART_BUILD_TARGET_NDEBUG := false
-DONT_DEXPREOPT_PREBUILTS := true
-PRODUCT_ALWAYS_PREOPT_EXTRACTED_APK := true
-PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
-PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything-profile
-PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
-PRODUCT_OTHER_JAVA_DEBUG_INFO := false
-PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := everything
-PRODUCT_SYSTEM_SERVER_DEBUG_INFO := false
-USE_DEX2OAT_DEBUG := false
-WITH_DEXPREOPT_DEBUG_INFO := false
-endif
->>>>>>> c37a5c1 (miatoll: fastbootd is now enabled by default)
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -399,3 +372,5 @@ $(call inherit-product, vendor/xiaomi/miatoll/miatoll-vendor.mk)
 
 # Miui-Camera
 $(call inherit-product-if-exists, device/xiaomi/miuicamera-miatoll/device.mk)
+
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
