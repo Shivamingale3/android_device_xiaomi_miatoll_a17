@@ -138,9 +138,12 @@ PRODUCT_PACKAGES += \
     libgnss
 
 PRODUCT_PACKAGES += \
-    flp.conf.miatoll \
-    gnss_antenna_info.conf.miatoll \
-    gps.conf.miatoll \
+    flp.conf \
+    gnss_antenna_info.conf \
+    gps.conf \
+    gnss@2.0-base.policy \
+    gnss@2.0-xtra-daemon.policy \
+    gnss@2.0-xtwifi-client.policy \
     izat.conf.miatoll
 
 # Health

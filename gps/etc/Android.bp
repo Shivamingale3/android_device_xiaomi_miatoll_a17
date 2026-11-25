@@ -1,29 +1,6 @@
-// PenguinOS: device-specific GNSS configs, renamed so they don't collide with the
-// identically named modules of hardware/qcom/gps (installed under the same filenames).
-
-prebuilt_etc {
-
-    name: "gps.conf.miatoll",
-    vendor: true,
-    src: "gps.conf",
-    filename: "gps.conf",
-}
-
-prebuilt_etc {
-
-    name: "flp.conf.miatoll",
-    vendor: true,
-    src: "flp.conf",
-    filename: "flp.conf",
-}
-
-prebuilt_etc {
-
-    name: "gnss_antenna_info.conf.miatoll",
-    vendor: true,
-    src: "gnss_antenna_info.conf",
-    filename: "gnss_antenna_info.conf",
-}
+// PenguinOS: gps.conf/flp.conf/gnss_antenna_info.conf come from hardware/qcom/gps (Soong generates
+// install rules for every module, so two modules can't share an install path). izat.conf has no
+// AOSPA counterpart and stays device-specific.
 
 prebuilt_etc {
 
