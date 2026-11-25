@@ -13,7 +13,8 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 TARGET_BOARD_PLATFORM := atoll
 
 # Qualcomm common definitions come from device/qcom/common (inherited by aospa-target.mk).
-# QTI components: list from AOSPA's official miatoll tree (vauxite).
+# QTI components: list from AOSPA's official miatoll tree (vauxite), minus nfc
+# (NFC uses the AOSP stack + hardware/nxp/nfc, see # NFC below).
 TARGET_COMMON_QTI_COMPONENTS := \
     alarm \
     audio \
@@ -23,7 +24,6 @@ TARGET_COMMON_QTI_COMPONENTS := \
     gps \
     init \
     media \
-    nfc \
     overlay \
     perf \
     telephony \
