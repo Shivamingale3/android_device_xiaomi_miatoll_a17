@@ -14,7 +14,8 @@ TARGET_BOARD_PLATFORM := atoll
 
 # Qualcomm common definitions come from device/qcom/common (inherited by aospa-target.mk).
 # QTI components: list from AOSPA's official miatoll tree (vauxite), minus nfc
-# (NFC uses the AOSP stack + hardware/nxp/nfc, see # NFC below).
+# (NFC uses the AOSP stack + hardware/nxp/nfc, see # NFC below), init (device rootdir
+# provides init.qcom.*/ueventd.qcom.rc) and wfd (WFD libs come with the blobs).
 TARGET_COMMON_QTI_COMPONENTS := \
     alarm \
     audio \
@@ -22,14 +23,12 @@ TARGET_COMMON_QTI_COMPONENTS := \
     bt \
     display \
     gps \
-    init \
     media \
     overlay \
     perf \
     telephony \
     usb \
     vibrator \
-    wfd \
     wlan
 
 TARGET_GPS_COMPONENT_VARIANT := gps
