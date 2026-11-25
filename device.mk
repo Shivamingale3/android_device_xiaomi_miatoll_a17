@@ -9,8 +9,27 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
-# Add common definitions for Qualcomm
-$(call inherit-product, hardware/qcom-caf/common/common.mk)
+# Qualcomm common definitions come from device/qcom/common (inherited by aospa-target.mk).
+# QTI components: list from AOSPA's official miatoll tree (vauxite).
+TARGET_COMMON_QTI_COMPONENTS := \
+    alarm \
+    audio \
+    av \
+    bt \
+    display \
+    gps \
+    init \
+    media \
+    nfc \
+    overlay \
+    perf \
+    telephony \
+    usb \
+    vibrator \
+    wfd \
+    wlan
+
+TARGET_GPS_COMPONENT_VARIANT := gps
 
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
@@ -166,15 +185,12 @@ PRODUCT_PACKAGES += \
 
 $(call soong_config_set_bool,lineage_health,charging_control_supports_bypass,false)
 
-# Lights
+# Lights (AOSPA hardware_xiaomi light HAL, vendored in light/)
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.lineage
+    android.hardware.light-service.xiaomi
 
 # LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay-service.sdm
-
-$(call soong_config_set_bool,livedisplay_sdm,enable_dm,false)
+# TODO(penguin): LineageOS LiveDisplay is unavailable on PenguinOS.
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -208,10 +224,6 @@ PRODUCT_PACKAGES += \
     SystemUIMiatoll \
     TelephonyResCommon \
     WifiOverlay
-
-PRODUCT_PACKAGES += \
-    ApertureMiatoll \
-    LineageSDKMiatoll
 
 # Partitions
 PRODUCT_PACKAGES += \
@@ -270,11 +282,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.vulkan.deqp.level-2020-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml
 
 # Power
-PRODUCT_PACKAGES += \
-    android.hardware.power-service.lineage-libperfmgr
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+# QTI power AIDL (vendor/qcom/opensource/power) + QTI perf ("perf" QTI component), as on AOSPA miatoll.
+# configs/powerhint.json (libperfmgr) is kept for reference/tuning.
 
 # QTI fwk-detect
 PRODUCT_PACKAGES += \
@@ -311,10 +320,6 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     bootable/deprecated-ota \
     hardware/google/interfaces \
-    hardware/lineage/interfaces/power-libperfmgr \
-    hardware/google/pixel/pixelstats \
-    hardware/google/pixel/power-libperfmgr \
-    hardware/qcom-caf/common/libqti-perfd-client \
     hardware/xiaomi
 
 # Telephony

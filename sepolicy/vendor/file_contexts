@@ -53,3 +53,6 @@
 
 # Thermal
 /data/vendor/thermal(/.*)?                                                    u:object_r:vendor_thermal_data_file:s0
+
+# Light HAL (AOSPA hardware_xiaomi, vendored in light/)
+/vendor/bin/hw/android\.hardware\.light-service\.xiaomi    u:object_r:hal_light_default_exec:s0
