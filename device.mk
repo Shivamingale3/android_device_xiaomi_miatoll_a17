@@ -13,13 +13,14 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 TARGET_BOARD_PLATFORM := atoll
 
 # Qualcomm common definitions come from device/qcom/common (inherited by aospa-target.mk).
-# QTI components (device/qcom/common). The blobs are a complete, device-matched set, so only
-# components that don't duplicate them are used: alarm/av/display/gps/media/telephony/wlan
-# overlap the blobs; init/wfd/nfc are provided by the device tree / blobs / AOSP NFC stack.
+# QTI components (device/qcom/common). display/media: AOSPA HAL + component blobs as a matched
+# set (overlapping device blobs removed). alarm/av/gps/telephony/wlan overlap the blobs; init/wfd/nfc are provided by the device tree / blobs / AOSP NFC stack.
 # perf = QTI power/perf HAL (replaces LineageOS libperfmgr; its msm_irqbalance replaces the blob one).
 TARGET_COMMON_QTI_COMPONENTS := \
     audio \
     bt \
+    display \
+    media \
     overlay \
     perf \
     usb \
@@ -82,19 +83,12 @@ $(call soong_config_set,libcameraservice,ext_lib,//$(LOCAL_PATH):libcameraservic
 # DebugFS
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 
-# Display
-PRODUCT_PACKAGES += \
-    android.hardware.graphics.composer@2.4-service
 
 PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
     android.hardware.graphics.mapper@4.0-impl-qti-display
 
-PRODUCT_PACKAGES += \
-    gralloc.qcom \
-    hwcomposer.qcom \
-    vendor.qti.hardware.display.allocator-service \
-    vendor.qti.hardware.memtrack-service
+# Display HAL packages come from hardware/qcom/display/config/display-product.mk (display component).
 
 # DRM
 PRODUCT_PACKAGES += \
