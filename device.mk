@@ -318,6 +318,8 @@ SOONG_CONFIG_rmnetctl += old_rmnet_data
 SOONG_CONFIG_rmnetctl_old_rmnet_data := true
 $(call inherit-product, vendor/qcom/opensource/dataservices/dataservices_vendor_product.mk)
 PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/data-ipa-cfg-mgr-legacy
+# CneApp (blob) requires CneApp.libvndfwk_detect_jni.qti_symlink from this namespace (only module in it).
+PRODUCT_SOONG_NAMESPACES += device/qcom/common/vendor/telephony
 $(call inherit-product, vendor/qcom/opensource/data-ipa-cfg-mgr-legacy/ipacm_vendor_product.mk)
 
 # Telephony
