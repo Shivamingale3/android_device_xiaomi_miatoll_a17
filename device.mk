@@ -144,10 +144,10 @@ PRODUCT_PACKAGES += \
     libgnss
 
 PRODUCT_PACKAGES += \
-    flp.conf \
-    gnss_antenna_info.conf \
-    gps.conf \
-    izat.conf
+    flp.conf.miatoll \
+    gnss_antenna_info.conf.miatoll \
+    gps.conf.miatoll \
+    izat.conf.miatoll
 
 # Health
 PRODUCT_PACKAGES += \

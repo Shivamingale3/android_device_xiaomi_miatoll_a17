@@ -1,28 +1,34 @@
+// PenguinOS: device-specific GNSS configs, renamed so they don't collide with the
+// identically named modules of hardware/qcom/gps (installed under the same filenames).
 
 prebuilt_etc {
 
-    name: "gps.conf",
+    name: "gps.conf.miatoll",
     vendor: true,
     src: "gps.conf",
+    filename: "gps.conf",
 }
 
 prebuilt_etc {
 
-    name: "flp.conf",
+    name: "flp.conf.miatoll",
     vendor: true,
     src: "flp.conf",
+    filename: "flp.conf",
 }
 
 prebuilt_etc {
 
-    name: "gnss_antenna_info.conf",
+    name: "gnss_antenna_info.conf.miatoll",
     vendor: true,
     src: "gnss_antenna_info.conf",
+    filename: "gnss_antenna_info.conf",
 }
 
 prebuilt_etc {
 
-    name: "izat.conf",
+    name: "izat.conf.miatoll",
     vendor: true,
     src: "izat.conf",
+    filename: "izat.conf",
 }
