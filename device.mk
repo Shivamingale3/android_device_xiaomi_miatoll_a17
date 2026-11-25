@@ -13,25 +13,17 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 TARGET_BOARD_PLATFORM := atoll
 
 # Qualcomm common definitions come from device/qcom/common (inherited by aospa-target.mk).
-# QTI components: list from AOSPA's official miatoll tree (vauxite), minus nfc
-# (NFC uses the AOSP stack + hardware/nxp/nfc, see # NFC below), init (device rootdir
-# provides init.qcom.*/ueventd.qcom.rc) and wfd (WFD libs come with the blobs).
+# QTI components (device/qcom/common). The blobs are a complete, device-matched set, so only
+# components that don't duplicate them are used: alarm/av/display/gps/media/telephony/wlan
+# overlap the blobs; init/wfd/nfc are provided by the device tree / blobs / AOSP NFC stack.
+# perf = QTI power/perf HAL (replaces LineageOS libperfmgr; its msm_irqbalance replaces the blob one).
 TARGET_COMMON_QTI_COMPONENTS := \
-    alarm \
     audio \
-    av \
     bt \
-    display \
-    gps \
-    media \
     overlay \
     perf \
-    telephony \
     usb \
-    vibrator \
-    wlan
-
-TARGET_GPS_COMPONENT_VARIANT := gps
+    vibrator
 
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
