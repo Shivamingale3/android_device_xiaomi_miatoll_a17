@@ -314,7 +314,17 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     bootable/deprecated-ota \
     hardware/google/interfaces \
+    hardware/qcom/wlan/qcwcn \
     hardware/xiaomi
+
+# Data services / IPACM (non-blob parts of the QTI telephony component, which is not
+# used because its prebuilts duplicate the device blobs). 4.14 kernel -> legacy variants.
+SOONG_CONFIG_NAMESPACES += rmnetctl
+SOONG_CONFIG_rmnetctl += old_rmnet_data
+SOONG_CONFIG_rmnetctl_old_rmnet_data := true
+$(call inherit-product, vendor/qcom/opensource/dataservices/dataservices_vendor_product.mk)
+PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/data-ipa-cfg-mgr-legacy
+$(call inherit-product, vendor/qcom/opensource/data-ipa-cfg-mgr-legacy/ipacm_vendor_product.mk)
 
 # Telephony
 PRODUCT_PACKAGES += \
