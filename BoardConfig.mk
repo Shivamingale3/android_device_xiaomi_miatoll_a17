@@ -70,9 +70,8 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 # DEVICE_MATRIX_FILE and the QTI vendor framework matrix are set by device/qcom/common.
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 
-# Jemalloc
-MALLOC_SVELTE := true
-MALLOC_SVELTE_FOR_LIBC32 := true
+# Malloc: use the AOSP default (Scudo). jemalloc (MALLOC_SVELTE) fails to link on PenguinOS A17:
+# bionic's jemalloc_wrapper needs je_stats_arena, which external/jemalloc_new doesn't provide.
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/hidl/c2_manifest_vendor.xml
 
 # Kernel
