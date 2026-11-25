@@ -9,6 +9,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
+# Platform: device/qcom/common/common.mk reads this at product time (BoardConfig is too late).
+TARGET_BOARD_PLATFORM := atoll
+
 # Qualcomm common definitions come from device/qcom/common (inherited by aospa-target.mk).
 # QTI components: list from AOSPA's official miatoll tree (vauxite).
 TARGET_COMMON_QTI_COMPONENTS := \
