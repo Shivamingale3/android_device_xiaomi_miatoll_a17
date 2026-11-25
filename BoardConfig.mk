@@ -18,6 +18,12 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a76
 
+# Build (as AOSPA's official miatoll tree): device/qcom/common defines Soong mount-point modules
+# (vendor_firmware_mnt_mountpoint, ...) and core-utils AndroidBoardCommon.mk creates the same dirs
+# (TARGET_FWK_SUPPORTS_FULL_VALUEADDS is always true in build/make/core/config.mk).
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+
 # HWUI
 HWUI_COMPILE_FOR_PERF := true
 
