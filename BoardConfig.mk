@@ -96,6 +96,9 @@ KERNEL_CUSTOM_LLVM := true
 KERNEL_CUSTOM_LLVM_PATH := $(abspath prebuilts/clang/host/linux-x86/clang-r563880c)
 KERNEL_FULL_LLVM := true
 
+# TEMPORARY (first-boot debugging): SELinux permissive so ADB comes up even if boot fails.
+# Remove before any real release.
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0
 BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom
 BOARD_KERNEL_CMDLINE += androidboot.memcg=1
