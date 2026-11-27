@@ -21,6 +21,8 @@ cc_library_shared {
         "vendor/qcom/opensource/audio-hal/primary-hal/hal/msm8974",
         "system/media/audio_route/include",
         "system/media/audio_utils/include",
+        // sound/voice_params.h (needed by the audio HAL platform.h)
+        "kernel/xiaomi/sm6250/techpack/audio/include/uapi",
     ],
 
     header_libs: [
