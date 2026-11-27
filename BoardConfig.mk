@@ -93,6 +93,11 @@ TARGET_KERNEL_SOURCE := kernel/xiaomi/sm6250
 KERNEL_CUSTOM_LLVM := true
 KERNEL_FULL_LLVM := true
 
+# device_kernel_headers (soong kernel_headers) exports these source dirs. Only the
+# audio techpack uapi (sound/voice_params.h for the tas2562 amplifier): the full raw
+# include/uapi would clash with bionic, qti_kernel_headers covers the rest.
+TARGET_BOARD_KERNEL_HEADERS := $(TARGET_KERNEL_SOURCE)/techpack/audio/include/uapi
+
 BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0
 BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom
 BOARD_KERNEL_CMDLINE += androidboot.memcg=1
