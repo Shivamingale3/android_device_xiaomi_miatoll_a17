@@ -91,6 +91,9 @@ BOARD_RAMDISK_USE_LZ4 := true
 KERNEL_DEFCONFIG := vendor/xiaomi/miatoll_defconfig
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sm6250
 KERNEL_CUSTOM_LLVM := true
+# kernelscripts defaults to prebuilts/clang-standalone (absent in PenguinOS); use the
+# clang LineageOS built this kernel with, which ships in prebuilts/clang.
+KERNEL_CUSTOM_LLVM_PATH := $(abspath prebuilts/clang/host/linux-x86/clang-r563880c)
 KERNEL_FULL_LLVM := true
 
 BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0
