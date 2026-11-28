@@ -344,7 +344,9 @@
 
          Refer to autosuspend.h for details.
     -->
-    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
+    <!-- false: the device froze for good when the kernel suspended during AOD (display in DOZE).
+         Coupled, the CPU stays awake while AOD is shown and still suspends with the screen off. -->
+    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">false</bool>
 
     <!-- Power Management: Specifies whether to decouple the interactive state of the
          device from the display on/off state.
