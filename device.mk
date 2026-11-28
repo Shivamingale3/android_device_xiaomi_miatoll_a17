@@ -12,6 +12,10 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Platform: device/qcom/common/common.mk reads this at product time (BoardConfig is too late).
 TARGET_BOARD_PLATFORM := atoll
 
+# Power: LineageOS libperfmgr with configs/powerhint.json instead of the QTI power AIDL. The Kinesis
+# kernel has no WALT/msm_performance, so every QTI perf boost failed (UI lag).
+TARGET_PROVIDES_POWERHAL := true
+
 # Props that must win over QTI component defaults (BUILD_BROKEN_DUP_SYSPROP keeps the first
 # assignment, and this file is inherited before aospa-target.mk):
 # - QTI media sets debug.stagefright.ccodec=0 (OMX) for <5.4 kernels, but PenguinOS A17 has no
@@ -26,7 +30,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Qualcomm common definitions come from device/qcom/common (inherited by aospa-target.mk).
 # QTI components (device/qcom/common). display/media: AOSPA HAL + component blobs as a matched
 # set (overlapping device blobs removed). alarm/av/gps/telephony/wlan overlap the blobs; init/wfd/nfc are provided by the device tree / blobs / AOSP NFC stack.
-# perf = QTI power/perf HAL (replaces LineageOS libperfmgr; its msm_irqbalance replaces the blob one).
+# perf = QTI perf (libqti-perfd-client for the blobs, msm_irqbalance). The power HAL is libperfmgr (below).
 TARGET_COMMON_QTI_COMPONENTS := \
     audio \
     bt \
@@ -283,9 +287,18 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml \
     frameworks/native/data/etc/android.software.vulkan.deqp.level-2020-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml
 
-# Power
-# QTI power AIDL (vendor/qcom/opensource/power) + QTI perf ("perf" QTI component), as on AOSPA miatoll.
-# configs/powerhint.json (libperfmgr) is kept for reference/tuning.
+# Power (LineageOS libperfmgr)
+PRODUCT_PACKAGES += \
+    android.hardware.power-service.lineage-libperfmgr
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+
+PRODUCT_SOONG_NAMESPACES += \
+    hardware/google/interfaces \
+    hardware/google/pixel/power-libperfmgr \
+    hardware/lineage/interfaces/power-libperfmgr
+
 
 # QTI fwk-detect
 PRODUCT_PACKAGES += \
