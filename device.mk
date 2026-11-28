@@ -229,7 +229,8 @@ PRODUCT_PACKAGES += \
     FrameworksMiatoll \
     SystemUIMiatoll \
     TelephonyResCommon \
-    WifiOverlay
+    WifiOverlay \
+    UpdaterOverlayMiatoll
 
 # Partitions
 PRODUCT_PACKAGES += \

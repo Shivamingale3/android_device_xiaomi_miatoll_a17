@@ -1,0 +1,8 @@
+//
+// Point the PenguinOS Updater at our own OTA feed (unofficial builds).
+//
+
+runtime_resource_overlay {
+    name: "UpdaterOverlayMiatoll",
+    vendor: true,
+}

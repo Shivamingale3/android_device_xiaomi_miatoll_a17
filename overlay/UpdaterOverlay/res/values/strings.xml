@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Our unofficial builds: feed lives in Shivamingale3/penguinos-ota. -->
+    <string name="updater_server_url" translatable="false">https://raw.githubusercontent.com/Shivamingale3/penguinos-ota/main/{device}.json</string>
+</resources>
