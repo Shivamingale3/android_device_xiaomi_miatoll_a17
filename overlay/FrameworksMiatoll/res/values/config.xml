@@ -495,4 +495,9 @@
     <!-- Whether WM DisplayContent supports high performance transitions
          (lower-end devices may want to disable) -->
     <bool name="config_deviceSupportsHighPerfTransitions">false</bool>
-     </resources>
+     
+    <!-- AOD/lockscreen CPU temperature: big cluster sensor (cpuss-1-usr), millidegrees.
+         thermal_zone0 is the PMIC (pm6150-tz). -->
+    <string name="config_cpu_temp_path" translatable="false">/sys/class/thermal/thermal_zone25/temp</string>
+    <integer name="config_sysCPUTempMultiplier">1000</integer>
+</resources>

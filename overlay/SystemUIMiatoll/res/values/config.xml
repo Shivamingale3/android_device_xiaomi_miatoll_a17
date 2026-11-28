@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- CPUInfoService: big cluster sensor (cpuss-1-usr), millidegrees. -->
+    <string name="config_cpuTempSensor" translatable="false">/sys/class/thermal/thermal_zone25/temp</string>
+    <integer name="config_cpuTempDivider" translatable="false">1000</integer>
+</resources>
