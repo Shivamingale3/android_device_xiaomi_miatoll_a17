@@ -18,10 +18,10 @@ TARGET_PROVIDES_POWERHAL := true
 
 # Props that must win over QTI component defaults (BUILD_BROKEN_DUP_SYSPROP keeps the first
 # assignment, and this file is inherited before aospa-target.mk):
-# - Codec2 for everything (4). odm/etc/build.prop overrides the vendor default (1 = audio + SW only);
+# - Codec2: keep the vendor default debug.stagefright.ccodec=1 (c2.android.* + QTI AVC ranked last).
+#   4 exposes all c2.qti.* codecs; their HAL reports no profile/levels on A17, so the fixed-size
+#   c2.qti.hevc.encoder.cq gets impossible limits and MediaCodecList throws -> system_server bootloop.
 #   device/qcom/common no longer adds ccodec=0 on atoll (PenguinOS A17 has no OMX).
-PRODUCT_ODM_PROPERTIES += \
-    debug.stagefright.ccodec=4
 # - FFS MTP like the original tree; QTI usb sets 0 (legacy f_mtp) for 4.14, which left the
 #   USB gadget with a dead ADB function and no MTP after enabling USB debugging.
 PRODUCT_PROPERTY_OVERRIDES += \
