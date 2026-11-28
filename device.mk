@@ -17,7 +17,11 @@ TARGET_BOARD_PLATFORM := atoll
 TARGET_PROVIDES_POWERHAL := true
 
 # Props that must win over QTI component defaults (BUILD_BROKEN_DUP_SYSPROP keeps the first
-# assignment, and this file is inherited before aospa-target.mk). Codec2 on atoll: device/qcom/common.
+# assignment, and this file is inherited before aospa-target.mk):
+# - Codec2 for everything (4). odm/etc/build.prop overrides the vendor default (1 = audio + SW only);
+#   device/qcom/common no longer adds ccodec=0 on atoll (PenguinOS A17 has no OMX).
+PRODUCT_ODM_PROPERTIES += \
+    debug.stagefright.ccodec=4
 # - FFS MTP like the original tree; QTI usb sets 0 (legacy f_mtp) for 4.14, which left the
 #   USB gadget with a dead ADB function and no MTP after enabling USB debugging.
 PRODUCT_PROPERTY_OVERRIDES += \
