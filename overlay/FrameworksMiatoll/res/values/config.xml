@@ -502,4 +502,13 @@
          thermal_zone0 is the PMIC (pm6150-tz). -->
     <string name="config_cpu_temp_path" translatable="false">/sys/class/thermal/thermal_zone25/temp</string>
     <integer name="config_sysCPUTempMultiplier">1000</integer>
+
+    <!-- AOSPA gestures (values from AOSPA/android_device_xiaomi_miatoll).
+         The Novatek driver reports KEY_WAKEUP (143) on double tap; vendor.aospa.power
+         arms /sys/touchpanel/double_tap (TARGET_TAP_TO_WAKE_NODE). -->
+    <integer name="config_doubleTapKeyCode">143</integer>
+    <!-- 0 Disabled, 1 Wake, 2 Pulse, ... -->
+    <integer name="config_doubleTapDefault">1</integer>
+    <!-- Whether to intercept inputs on screen off. -->
+    <bool name="config_enableKeyHandler">true</bool>
 </resources>
