@@ -103,6 +103,9 @@ on early-boot
     mkdir /data/vendor/multimedia 0775 system system
 
 on boot
+    # Double tap to wake: written by the power HAL (system)
+    chown system system /sys/touchpanel/double_tap
+    chmod 0664 /sys/touchpanel/double_tap
     chown system system /sys/class/drm/card0-DSI-1/disp_param
     chmod 0664 /sys/class/drm/card0-DSI-1/disp_param
     chown system system /sys/class/drm/card0-DSI-1/mipi_reg
