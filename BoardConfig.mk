@@ -75,6 +75,9 @@ DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 # bionic's jemalloc_wrapper needs je_stats_arena, which external/jemalloc_new doesn't provide.
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/hidl/c2_manifest_vendor.xml
 
+# Double tap to wake (PenguinOS IPowerFeature; libperfmgr's powerhint.json uses the same node)
+TARGET_TAP_TO_WAKE_NODE := /sys/touchpanel/double_tap
+
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image
