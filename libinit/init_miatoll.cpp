@@ -78,8 +78,10 @@ void vendor_load_properties() {
 
     if (region == "India") {
         if (hwname == "curtana") {
+            // India curtana shipped as the Redmi Note 9 Pro (2020) and later the Redmi Note 10 Lite;
+            // the bootloader reports both the same way, so use the original model name.
             brand = "Redmi";
-            model = "Redmi Note 10 Lite";
+            model = "Redmi Note 9 Pro";
             device = "curtana";
             fingerprint = "Redmi/curtana_in1/curtana:12/RKQ1.211019.001/V14.0.5.0.SJWINRF:user/release-keys";
         } else if (hwname == "gram"){
