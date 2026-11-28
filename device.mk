@@ -18,6 +18,10 @@ TARGET_BOARD_PLATFORM := atoll
 #   OMX at all, which leaves an empty codec list (no ringtones/notification sounds/media).
 PRODUCT_ODM_PROPERTIES += \
     debug.stagefright.ccodec=4
+# - FFS MTP like the original tree; QTI usb sets 0 (legacy f_mtp) for 4.14, which left the
+#   USB gadget with a dead ADB function and no MTP after enabling USB debugging.
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.usb.use_ffs_mtp=1
 
 # Qualcomm common definitions come from device/qcom/common (inherited by aospa-target.mk).
 # QTI components (device/qcom/common). display/media: AOSPA HAL + component blobs as a matched
