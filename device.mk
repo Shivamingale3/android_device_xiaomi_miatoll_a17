@@ -12,6 +12,13 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Platform: device/qcom/common/common.mk reads this at product time (BoardConfig is too late).
 TARGET_BOARD_PLATFORM := atoll
 
+# Props that must win over QTI component defaults (BUILD_BROKEN_DUP_SYSPROP keeps the first
+# assignment, and this file is inherited before aospa-target.mk):
+# - QTI media sets debug.stagefright.ccodec=0 (OMX) for <5.4 kernels, but PenguinOS A17 has no
+#   OMX at all, which leaves an empty codec list (no ringtones/notification sounds/media).
+PRODUCT_ODM_PROPERTIES += \
+    debug.stagefright.ccodec=4
+
 # Qualcomm common definitions come from device/qcom/common (inherited by aospa-target.mk).
 # QTI components (device/qcom/common). display/media: AOSPA HAL + component blobs as a matched
 # set (overlapping device blobs removed). alarm/av/gps/telephony/wlan overlap the blobs; init/wfd/nfc are provided by the device tree / blobs / AOSP NFC stack.
