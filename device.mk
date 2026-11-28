@@ -17,11 +17,7 @@ TARGET_BOARD_PLATFORM := atoll
 TARGET_PROVIDES_POWERHAL := true
 
 # Props that must win over QTI component defaults (BUILD_BROKEN_DUP_SYSPROP keeps the first
-# assignment, and this file is inherited before aospa-target.mk):
-# - QTI media sets debug.stagefright.ccodec=0 (OMX) for <5.4 kernels, but PenguinOS A17 has no
-#   OMX at all, which leaves an empty codec list (no ringtones/notification sounds/media).
-PRODUCT_ODM_PROPERTIES += \
-    debug.stagefright.ccodec=4
+# assignment, and this file is inherited before aospa-target.mk). Codec2 on atoll: device/qcom/common.
 # - FFS MTP like the original tree; QTI usb sets 0 (legacy f_mtp) for 4.14, which left the
 #   USB gadget with a dead ADB function and no MTP after enabling USB debugging.
 PRODUCT_PROPERTY_OVERRIDES += \
