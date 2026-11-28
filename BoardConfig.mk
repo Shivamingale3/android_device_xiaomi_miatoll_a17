@@ -222,3 +222,7 @@ include vendor/xiaomi/miatoll/BoardConfigVendor.mk
 
 # Miui-Camera
 -include device/xiaomi/miuicamera-miatoll/BoardConfig.mk
+
+# The MIUI Camera port sets MALLOC_SVELTE := true (jemalloc); Android 17 bionic no longer links
+# with jemalloc (undefined je_stats_arena), so stay on scudo.
+MALLOC_SVELTE := false
