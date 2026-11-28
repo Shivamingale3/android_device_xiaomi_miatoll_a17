@@ -1,0 +1,25 @@
+{
+  "Profiles": [
+    {
+      "Name": "MaxPerformance",
+      "Actions": [
+        { "Name": "JoinCgroup", "Params": { "Controller": "cpu", "Path": "top-app" } },
+        { "Name": "JoinCgroup", "Params": { "Controller": "schedtune", "Path": "top-app" } }
+      ]
+    },
+    {
+      "Name": "HighPerformance",
+      "Actions": [
+        { "Name": "JoinCgroup", "Params": { "Controller": "cpu", "Path": "foreground" } },
+        { "Name": "JoinCgroup", "Params": { "Controller": "schedtune", "Path": "foreground" } }
+      ]
+    },
+    {
+      "Name": "HighEnergySaving",
+      "Actions": [
+        { "Name": "JoinCgroup", "Params": { "Controller": "cpu", "Path": "background" } },
+        { "Name": "JoinCgroup", "Params": { "Controller": "schedtune", "Path": "background" } }
+      ]
+    }
+  ]
+}
